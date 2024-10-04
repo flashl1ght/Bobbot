@@ -1,2 +1,2 @@
-# HoBoT
+# Hobbot
 Home Budget Tool
