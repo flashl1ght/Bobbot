@@ -34,12 +34,11 @@ server <- function(input, output, session) {
     req(file)
     validate(need(ext == "csv", "Please upload a csv file"))
     
-    input_tbl <- read.csv(file$datapath, header = TRUE)
-    fin_data$input_tbl
+    fin_data$input_tbl <- read.csv(file$datapath, header = TRUE)
   })
   
   # table for Data input tab
-  output$categories_table <- renderDT({
+  output$data_finance_table <- renderDT({
     fin_data$input_tbl
   }, server = FALSE, rownames = FALSE, editable = FALSE, selection = 'none')
   
