@@ -14,6 +14,9 @@ ui <- dashboardPage(
       ),
       menuItem(
         "Config", tabName = "tab_config", icon = icon("gear")
+      ),
+      menuItem(
+        "Data input", tabName = "tab_data_input", icon = icon("table")
       )
     )
   ),
@@ -32,7 +35,24 @@ ui <- dashboardPage(
             DTOutput("categories_table")
           )
         )
+      ),
+      tabItem(
+        tabName = "tab_data_input",
+        fluidRow(
+          column(
+            width = 12,
+            h2("Data input"),
+            hr(),
+            fileInput(
+              "data_finace_import",
+              "Import financial statement",
+              accept = c(".csv")
+            ),
+            DTOutput("data_finance_table")
+          )
+        )
       )
+      
     )
   )
 )
