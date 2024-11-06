@@ -56,7 +56,7 @@ ui <- dashboardPage(
         )
       ),
       tabItem(
-        tabName = "tab_data_input",
+        tabName = "tab_data_mapping",
         fluidRow(
           column(
             width = 12,
