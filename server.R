@@ -1,5 +1,8 @@
 library(shiny)
 library(DT)
+library(dplyr)
+
+source("modules/data_mapping.R")
 
 server <- function(input, output, session) {
   
@@ -42,4 +45,25 @@ server <- function(input, output, session) {
     fin_data$input_tbl
   }, server = FALSE, rownames = FALSE, editable = FALSE, selection = 'none')
   
+  # table for Data Mapping tab
+  output$data_mapping_table <- renderDT({
+    req(fin_data$input_tbl, categories_tbl())
+    render_data_mapping_DT(fin_data$input_tbl, categories_tbl())
+  }, server = FALSE, rownames = FALSE, editable = FALSE, selection = 'none')
+  
+  # save selected categories
+  observe({
+    req(fin_data$input_tbl, categories_tbl(), input$data_mapping_cat_1)
+    
+    # collect selected categories dynamically
+    selected_categories <- sapply(
+      seq_len(nrow(fin_data$input_tbl)), function(i) {
+        input[[paste0("data_mapping_cat_", i)]]
+    })
+    
+    # save the selected categories in fin_data
+    fin_data$mapped_data <- data.frame(
+      fin_data$input_tbl, Categories = selected_values
+    )
+  })
 }
