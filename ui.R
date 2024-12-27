@@ -45,12 +45,25 @@ ui <- dashboardPage(
           column(
             width = 12,
             h2("Data input"),
-            hr(),
+            hr()
+          )
+        ),
+        fluidRow(
+          column(
+            width = 12,
             fileInput(
               "data_finace_import",
               "Import financial statement",
               accept = c(".csv")
             ),
+            checkboxInput(
+              "if_input_mapped", label = "Data needs mapping", value = TRUE
+            )
+          ),
+        ),
+        fluidRow(
+          column(
+            width = 12,
             DTOutput("data_finance_table")
           )
         )
