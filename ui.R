@@ -17,6 +17,9 @@ ui <- dashboardPage(
       ),
       menuItem(
         "Data input", tabName = "tab_data_input", icon = icon("table")
+      ),
+      menuItem(
+        "Data mapping", tabName = "tab_data_mapping", icon = icon("table-list")
       )
     )
   ),
@@ -49,6 +52,17 @@ ui <- dashboardPage(
               accept = c(".csv")
             ),
             DTOutput("data_finance_table")
+          )
+        )
+      ),
+      tabItem(
+        tabName = "tab_data_mapping",
+        fluidRow(
+          column(
+            width = 12,
+            h2("Data mapping"),
+            hr(),
+            DTOutput("data_mapping_table")
           )
         )
       )
