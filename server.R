@@ -47,13 +47,14 @@ server <- function(input, output, session) {
   
   # table for Data Mapping tab
   output$data_mapping_table <- renderDT({
-    req(fin_data$input_tbl, categories_tbl())
+    req(fin_data$input_tbl, categories_tbl(), input$if_input_mapped)
     render_data_mapping_DT(fin_data$input_tbl, categories_tbl())
   }, server = FALSE, rownames = FALSE, editable = FALSE, selection = 'none')
   
   # save selected categories
   observe({
-    req(fin_data$input_tbl, categories_tbl(), input$data_mapping_cat_1)
+    req(fin_data$input_tbl, categories_tbl(), input$data_mapping_cat_1,
+        input$if_input_mapped)
     
     # collect selected categories dynamically
     selected_categories <- sapply(
