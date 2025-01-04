@@ -20,7 +20,11 @@ ui <- dashboardPage(
       ),
       menuItem(
         "Data mapping", tabName = "tab_data_mapping", icon = icon("table-list")
+      ),
+      menuItem(
+        "Data summary", tabName = "tab_data_summary", icon = icon("chart-line")
       )
+      
     )
   ),
   dashboardBody(
@@ -78,7 +82,18 @@ ui <- dashboardPage(
             DTOutput("data_mapping_table")
           )
         )
+      ),
+      tabItem(
+        tabName = "tab_data_summary",
+        fluidRow(
+          column(
+            width = 12,
+            h2("Data summary"),
+            hr()
+          )
+        )
       )
+      
       
     )
   )
